@@ -12,6 +12,10 @@ test.describe('hooks usage', ()=>{
 
     });
 
+    test.afterEach(async({page})=>{
+        console.log("Test Finished!");
+    })
+
 //check user on dashboard
 
     test('check user on dashboard',async({page})=>{
@@ -19,7 +23,7 @@ test.describe('hooks usage', ()=>{
     })
 
     //logout functionality
-    test('logout functionality', async({page})=>{
+    test.only('logout functionality', async({page})=>{
         await page.getByRole('link', {name: 'Logout'}).click();
         await expect(page).toHaveURL(/login/);
     });
@@ -27,5 +31,8 @@ test.describe('hooks usage', ()=>{
     test('check user on dashboard after logout',async({page})=>{
         expect(page.getByText('You logged out of the secure'));
     })
+
+
+    
 
 })
